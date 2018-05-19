@@ -21,6 +21,8 @@ class MediaWrapper: AudioPlayerDelegate {
     private var currentIndex: Int
     private let player: AudioPlayer
     private var trackImageTask: URLSessionDataTask?
+    public var repeated = true
+    public var autoPlayNext = true
     
     weak var delegate: MediaWrapperDelegate?
     
@@ -86,6 +88,8 @@ class MediaWrapper: AudioPlayerDelegate {
         
         self.player.delegate = self
         self.player.bufferingStrategy = .playWhenBufferNotEmpty
+        
+        self.autoPlayNext = true
         
         DispatchQueue.main.async {
             UIApplication.shared.beginReceivingRemoteControlEvents()
@@ -236,8 +240,19 @@ class MediaWrapper: AudioPlayerDelegate {
     
     func audioPlayer(_ audioPlayer: AudioPlayer, didFinishPlaying item: Track, at position: TimeInterval?) {
         if item.skipped { return }
-        if (!playNext()) {
-            delegate?.playerExhaustedQueue(trackId: item.id, time: position)
+        if (self.repeated) {
+            play()
+            return
+        }
+        if(self.autoPlayNext)
+        {
+            if (!playNext()) {
+                delegate?.playerExhaustedQueue(trackId: item.id, time: position)
+            }
+        }
+        else
+        {
+            stop()
         }
     }
     
