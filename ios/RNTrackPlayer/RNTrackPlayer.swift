@@ -222,30 +222,6 @@ class RNTrackPlayer: RCTEventEmitter, MediaWrapperDelegate {
         }
     }
     
-    @objc(enableRepeat)
-    func enableRepeat() {
-        print("Enable repeat current track")
-        mediaWrapper.repeated = true
-    }
-    
-    @objc(disableRepeat)
-    func disableRepeat() {
-        print("Disable repeat current track")
-        mediaWrapper.repeated = false
-    }
-    
-    @objc(enableAutoplayUpNext)
-    func enableAutoplayUpNext() {
-        print("Enable autoplay up next")
-        mediaWrapper.autoPlayNext = true
-    }
-    
-    @objc(disableAutoplayUpNext)
-    func disableAutoplayUpNext() {
-        print("Disable autoplay up next")
-        mediaWrapper.autoPlayNext = false
-    }
-    
     @objc(reset)
     func reset() {
         print("Resetting player.")
