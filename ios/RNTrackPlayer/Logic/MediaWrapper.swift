@@ -21,7 +21,7 @@ class MediaWrapper: AudioPlayerDelegate {
     private var currentIndex: Int
     private let player: AudioPlayer
     private var trackImageTask: URLSessionDataTask?
-    public var repeated = true
+    public var repeated = false
     public var autoPlayNext = true
     
     weak var delegate: MediaWrapperDelegate?
@@ -222,7 +222,10 @@ class MediaWrapper: AudioPlayerDelegate {
     }
     
     func seek(to time: Double) {
-        self.player.seek(to: time)
+        self.player.seek(to: time, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: { (_) in
+            // Do nothing. Just fixing bug can't update seek bar after seek
+        })
+//        self.player.seek(to: time)
     }
     
     func reset() {
