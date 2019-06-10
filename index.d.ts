@@ -39,7 +39,7 @@ declare namespace RNTrackPlayer {
     | 'remote-previous'
     | 'remote-jump-forward'
     | 'remote-jump-backward'
-  
+
   type Handler = (type: EventType, ...args: any[]) => void;
   export function registerEventHandler(handler: Handler): void;
 
@@ -65,7 +65,7 @@ declare namespace RNTrackPlayer {
   }
 
   export function add(tracks: Track|Track[], insertBeforeId?: string): Promise<void>;
-  export function remove(tracks: Track|Track[]): Promise<void>;
+  export function remove(trackIds: String|String[]): Promise<void>;
   export function skip(trackId: string): Promise<void>;
   export function getQueue(): Promise<Track[]>;
   export function skipToNext(): Promise<void>;
@@ -79,6 +79,7 @@ declare namespace RNTrackPlayer {
   export function play(): void;
   export function pause(): void;
   export function stop(): void;
+  export function resume(): void;
   export function seekTo(time: number): void;
   export function setVolume(level: number): void;
   export function setRate(rate: number): void;

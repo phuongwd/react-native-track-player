@@ -40,6 +40,14 @@ RCT_EXTERN_METHOD(skipToNext:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(skipToPrevious:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject);
 
+RCT_EXTERN_METHOD(setRepeatToTrack:(NSString *)trackId
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject);
+
+RCT_EXTERN_METHOD(removeRepeatFromTrack:(NSString *)trackId
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject);
+
 RCT_EXTERN_METHOD(reset);
 
 RCT_EXTERN_METHOD(play);
@@ -47,6 +55,8 @@ RCT_EXTERN_METHOD(play);
 RCT_EXTERN_METHOD(pause);
 
 RCT_EXTERN_METHOD(stop);
+
+RCT_EXTERN_METHOD(resume);
 
 RCT_EXTERN_METHOD(seekTo:(double)time);
 
@@ -81,5 +91,13 @@ RCT_EXTERN_METHOD(getPosition:(RCTPromiseResolveBlock)resolve
 
 RCT_EXTERN_METHOD(getState:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject);
+
+RCT_EXTERN_METHOD(enableAutoplayUpNext);
+
+RCT_EXTERN_METHOD(disableAutoplayUpNext);
+
+RCT_EXTERN_METHOD(enableRepeat);
+
+RCT_EXTERN_METHOD(disableRepeat);
 
 @end
